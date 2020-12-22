@@ -11,12 +11,12 @@ int factorial(int n)
 	if (n <= 1) return 1;
 	else return n * factorial(n - 1);
 }
-double funSumm(int n, int x)
+float funSumm(int n, float x)
 {
 	if (n == 0)
 		return 1;
 	else
-		return funSumm(n-1, x) + pow(sin(x), n-1) / factorial(n);
+		return funSumm(n-1, x) + pow(sin(x), n) / factorial(n);
 }
 
 int main()
