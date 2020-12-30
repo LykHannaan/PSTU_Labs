@@ -14,7 +14,8 @@ int* octdec(int n, ...)
         int exp = 0;
         while (oct > 0)
         {
-            d[i] += (oct % 10) * pow(8, (exp++));
+            d[i] += (oct % 10) * pow(8, exp);
+            exp++;
             oct /= 10;
         }
         if (!flag) d[i] *= -1;
