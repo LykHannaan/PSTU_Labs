@@ -27,7 +27,7 @@ void to_form(Shopcar* car, int n)
 		cin >> car[i].color;
 		cout << endl;
 	}
-	if ((fp = fopen("str.txt", "rb")) == NULL)
+	if ((fp = fopen("str.txt", "r+b")) == NULL)
 	{
 		perror("Ошибка при открытии файла");
 		exit(0);
@@ -75,7 +75,7 @@ void car_del(Shopcar* car, int year, int& n)
 		}
 	}
 
-	if ((fp = fopen("str.txt", "rb")) == NULL)
+	if ((fp = fopen("str.txt", "r+b")) == NULL)
 	{
 		perror("Ошибка при открытии файла");
 		exit(0);
@@ -116,7 +116,7 @@ void car_add(Shopcar* car, int& n)
 	cout << endl;
 
 
-	if ((fp = fopen("str.txt", "rb")) == NULL)
+	if ((fp = fopen("str.txt", "r+b")) == NULL)
 	{
 		perror("Ошибка при открытии файла");
 		exit(0);
