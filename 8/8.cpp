@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <stdio.h>
-
+#include <windows.h>
 
 using namespace std;
 FILE* fp;
@@ -55,10 +55,10 @@ void print(Shopcar* car, int n)
 	else
 	{
 		for (int i = 0; i < n; i++) {
-			cout << car[i].brand << " ";
-			cout << car[i].ReleaseYear << " ";
-			cout << car[i].price << " ";
-			cout << car[i].color << endl;
+			cout << "Марка автомобиля: "<< car[i].brand << endl;
+			cout << "Год выпуска: " << car[i].ReleaseYear << endl;
+			cout << "Цена: " << car[i].price << endl;
+			cout << "Цвет: " << car[i].color << endl;
 		}
 	}
 	fwrite(&car, sizeof(Shopcar), 1, fp);
@@ -71,7 +71,7 @@ void car_del(Shopcar* car, int year, int& n)
 	{
 		if (car[i].ReleaseYear < year)
 		{
-			for (int k = i; k < n - 1; k++)
+			for (int k = i; k < n-1; k++)
 			{
 				car[k].brand = car[k + 1].brand;
 				car[k].ReleaseYear = car[k + 1].ReleaseYear;
@@ -92,16 +92,15 @@ void car_del(Shopcar* car, int year, int& n)
 	{
 		for (int i = 0; i < n; i++)
 		{
-			cout << car[i].brand << " ";
-			cout << car[i].ReleaseYear << " ";
-			cout << car[i].price << " ";
-			cout << car[i].color << endl;
+			cout << "Марка автомобиля: " << car[i].brand << endl;
+			cout << "Год выпуска: " << car[i].ReleaseYear << endl;
+			cout << "Цена: " << car[i].price << endl;
+			cout << "Цвет: " << car[i].color << endl;
 		}
 	}
 	fread(&car, sizeof(n), 1, fp);
 	fclose(fp);
 }
-
 
 void car_add(Shopcar* car, int& n)
 {
@@ -134,10 +133,10 @@ void car_add(Shopcar* car, int& n)
 	{
 		for (int i = 0; i < n; i++)
 		{
-			cout << car[i].brand << " ";
-			cout << car[i].ReleaseYear << " ";
-			cout << car[i].price << " ";
-			cout << car[i].color << endl;
+			cout << "Марка автомобиля: " << car[i].brand << endl;
+			cout << "Год выпуска: " << car[i].ReleaseYear << endl;
+			cout << "Цена: " << car[i].price << endl;
+			cout << "Цвет: " << car[i].color << endl;
 		}
 	}
 	fread(&car, sizeof(n), 1, fp);
@@ -146,7 +145,8 @@ void car_add(Shopcar* car, int& n)
 
 int main()
 {
-	setlocale(LC_ALL, "ru");
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 
 	int n, year;
 	cout << "\tСколько будет записей в файле? : - ";
