@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <stdio.h>
+
+
 using namespace std;
 FILE* fp;
 
@@ -14,7 +16,9 @@ struct Shopcar
 
 void to_form(Shopcar* car, int n)
 {
+#pragma warning(suppress : 4996)
 	fp = fopen("str.txt", "w");
+#pragma warning(suppress : 4996)
 	for (int i = 0; i < n; i++)
 	{
 		cout << "Введите марку: ";
@@ -27,11 +31,13 @@ void to_form(Shopcar* car, int n)
 		cin >> car[i].color;
 		cout << endl;
 	}
+#pragma warning(suppress : 4996)
 	if ((fp = fopen("str.txt", "r+b")) == NULL)
 	{
 		perror("Ошибка при открытии файла");
 		exit(0);
 	}
+#pragma warning(suppress : 4996)
 	fwrite(&car, sizeof(Shopcar), 1, fp);
 	fclose(fp);
 }
@@ -39,12 +45,13 @@ void to_form(Shopcar* car, int n)
 void print(Shopcar* car, int n)
 {
 	FILE* fp;
-
+#pragma warning(suppress : 4996)
 	if ((fp = fopen("str.txt", "rb")) == NULL)
 	{
 		perror("Ошибка при открытии файла");
 		exit(0);
 	}
+#pragma warning(suppress : 4996)
 	else
 	{
 		for (int i = 0; i < n; i++) {
@@ -74,12 +81,13 @@ void car_del(Shopcar* car, int year, int& n)
 			n--;
 		}
 	}
-
+#pragma warning(suppress : 4996)
 	if ((fp = fopen("str.txt", "r+b")) == NULL)
 	{
 		perror("Ошибка при открытии файла");
 		exit(0);
 	}
+#pragma warning(suppress : 4996)
 	else
 	{
 		for (int i = 0; i < n; i++)
@@ -105,22 +113,23 @@ void car_add(Shopcar* car, int& n)
 		car[i].color = car[i + 1].color;
 	}
 	n++;
-	cout << "Введите носитель: ";
+	cout << "Введите марку автомобиля: ";
 	cin >> car[0].brand;
-	cout << "Введите объём: ";
+	cout << "Введите год выпуска: ";
 	cin >> car[0].ReleaseYear;
-	cout << "Введите название: ";
+	cout << "Введите цену: ";
 	cin >> car[0].price;
-	cout << "Введите автора: ";
+	cout << "Введите цвет: ";
 	cin >> car[0].color;
 	cout << endl;
 
-
+#pragma warning(suppress : 4996)
 	if ((fp = fopen("str.txt", "r+b")) == NULL)
 	{
 		perror("Ошибка при открытии файла");
 		exit(0);
 	}
+#pragma warning(suppress : 4996)
 	else
 	{
 		for (int i = 0; i < n; i++)
