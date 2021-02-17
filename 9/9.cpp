@@ -69,7 +69,7 @@ void copy()
     {
         cout << "Файл открыт!" << endl;
 
-        for (int i = 1; !file1.eof(); i++)
+        for (int i = 0; !file1.eof(); i++)
         {
             getline(file1, str);
 
@@ -116,7 +116,7 @@ void count_maxletters_A()
     {
         cout << "Файл открыт!" << endl;
 
-        for (int i = 1; !newf.eof(); i++)
+        for (int i = 0; !newf.eof(); i++)
         {
             count_A = 0;
             getline(newf, str);
