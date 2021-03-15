@@ -4,14 +4,17 @@
 using namespace std;
 
 int board[8][8];
-int results_count = 0; 
+int res_count = 1; 
 
 void showBoard()
 {
     for (int i = 0; i < 8; ++i)
     {
         for (int j = 0; j < 8; ++j)
-            cout << ((board[i][j]) ? "Q " : ". ");
+            if (board[i][j] == 1)
+                cout << "Q ";        
+            else
+                cout << ". ";
 
         cout << '\n';
     }
@@ -41,7 +44,7 @@ void setQueen(int i)
     if (i == 8)
     {
         showBoard();
-        cout << "Результат №" << results_count++ << "\n\n";
+        cout << "Результат №" << res_count++ << "\n\n";
         return; 
     }
     for (int k = 0; k < 8; ++k)
