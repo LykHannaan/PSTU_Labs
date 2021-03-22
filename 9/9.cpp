@@ -9,9 +9,8 @@ void count_maxletters_A();
 int main()
 {
     system("chcp 1251 > nul");
-    //setlocale(LC_ALL, "rus");
-
-    int close = 0, click;
+    int click;
+    bool close = 0;              //флаг для проверки выхода из программы
 
     do
     {
@@ -19,33 +18,28 @@ int main()
         cout << "\tЧто вы хотите сделать?" << endl;
         cout << "1.Скопировать из файла F1 в файл F2 все строки, заканчивающиеся на букву «А» и расположенные между строками с номерами N1 и N2" << endl;
         cout << "2.Определить номер той строки, в которой больше всего букв «А», файла F2." << endl;
-        cout << "3.Выход" << endl;
-        cout << endl;
-        cin >> click;
-
+        cout << "3.Выход" << endl << endl;
+     
+        cin >> click;           //выбор действия 
         switch (click)
         {
         case 1:
             cout << "Введите номера строки N1 и N2: " << endl;
-
             copy();
-
             break;
         case 2:
             count_maxletters_A();
             break;
-
         case 3:
             cout << endl;
-            cout << "Программа завершила свою работу!";
-            cout << endl;
+            cout << "Программа завершила свою работу!" << endl;
             close = 1;
             break;
         default:
             break;
         }
 
-    } while (close != 1);
+    } while (!close);          // пока close ложный (click != 3), программа будет выполняться 
     return 0;
 }
 
@@ -60,8 +54,8 @@ void copy()
     int N1, N2;
     bool flag = 0;
     int countStr = 0;
-    cin >> N1 >> N2;
-    if (!file1.is_open())
+    cin >> N1 >> N2;                               //номера для диапазона копирования строк
+    if (!file1.is_open())                          
     {
         cout << " Ошибка открытия файла !" << endl;
     }
@@ -69,13 +63,13 @@ void copy()
     {
         cout << "Файл открыт!" << endl;
 
-        for (int i = 0; !file1.eof(); i++)
+        for (int i = 0; !file1.eof(); i++)                // проходим по строкам до конца файла
         {
-            getline(file1, str);
+            getline(file1, str);                          // считываем строки
 
-            countStr++;
+            countStr++;                                   //номер считываемой строки
 
-            if (countStr >= N1 && countStr <= N2) {
+            if (countStr >= N1 && countStr <= N2) {        
                 for (int i = 0; i < str.length(); i++)
                 {
                     if ((str[i] == 'А') && (str[i + 1] == '\0'))
@@ -83,12 +77,11 @@ void copy()
                 }
             }
                 if (flag) 
-            file2 << str << '\n';
+            file2 << str << '\n';                       //копирование в файл F2 необходимых строк 
 
             flag = false;
 
         }
-        cout << countStr;
 
     }
 
@@ -118,23 +111,23 @@ void count_maxletters_A()
 
         for (int i = 0; !newf.eof(); i++)
         {
-            count_A = 0;
-            getline(newf, str);
+            count_A = 0;                        
+            getline(newf, str);                 //считывание строки
 
-            countStr++;
+            countStr++;                           //номер считываемой строки
 
-            for (int i = 0; i < str.length(); i++)
+            for (int i = 0; i < str.length(); i++)       //подсчет количества букв А в строке
             {
-                if (str[i] == 'А')
+                if (str[i] == 'А')   
                     count_A++;
             }
-            if (count_A > max_count_A)
+            if (count_A > max_count_A)               // поиск строки с максимальным количеством букв А 
             {
                 max_count_A = count_A;
                 numStr = countStr;
             }
         }
-        cout << numStr;
+        cout << numStr;                           //вывод номера найденной строки
     }
 
     newf.close();
