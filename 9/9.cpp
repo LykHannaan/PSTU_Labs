@@ -125,5 +125,4 @@ void count_maxletters_A()
         cout << "Номер строки с наибольшим количеством букв А: " << numStr << endl;
     }
     newf.close();
-
 }
