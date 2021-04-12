@@ -67,6 +67,7 @@ void make_random(Data* person)
 void to_form(Data* person)
 {
 	int a = 0, d, m, y;
+
 	string surname1, name1, middle_name1, street1, town1;
 
 	for (i = 0; i < n; i++) {
@@ -112,7 +113,7 @@ void print_to_file(Data* person)
 	}
 	else {
 		for (int i = 0; i < n; i++) {
-			fout << i + 1 << ".\t";
+			fout << i + 1 << endl;
 			fout << person[i].full_name << endl;
 			fout << person[i].DOB << endl;
 			fout << person[i].address << endl << endl;
@@ -135,37 +136,34 @@ void Line_search1(Data* person, string key)
 	else cout << "Элемента в списке нет";
 }
 
-int search3(Data* person, string key)
+void search2(Data* person, string key)
 {
-	int str1, key1, res = -1;
-	key1 = key.size();
+	string line;
+	for (int i = 1; i <= n; i++)
+	{
+		line = line + to_string(i) + person[i - 1].full_name;
+	}
+	int str, substr, res = -1;
 
-	for (int t = 0; t < n; t++) {
-		str1 = person[t].full_name.size();
-
-		if (str1 != 0 && key1 != 0)
+	str = line.size();
+	substr = key.size();
+	if (str != 0 && substr != 0)
+	{
+		for (int i = 0; i < str - substr + 1; i++)
 		{
-			for (i = 0; i < str1 - key1 + 1; i++)
+			for (int j = 0; j < substr; j++)
 			{
-				for (j = 0; j < key1; j++)
+				if (key[j] != line[i + j]) break;
+				else if (j == substr - 1)
 				{
-					if (key[j] != person[t].full_name[i + j]) break;
-					else if (j == key1 - 1)
-					{
-						res = i;
-						break;
-					}
+					res = i;
+					break;
 				}
 			}
 		}
+		if (res != -1) cout << "Элемент в списке найден. Он находится под номером " << line[res - 1];
+		else cout << "Элемента в списке нет";
 	}
-	if (res != -1)
-	{
-		cout << "Элемент в списке найден. Он находится под номером " << res + 1;
-	}
-	else cout << "Элемента в списке нет" << endl;
-
-	return 0;
 }
 
 int main()
@@ -214,11 +212,65 @@ int main()
 			break;
 		}
 	}
+
 	if (close == 0) {
-		do
+		do{
+		cout << endl;
+		cout << "\tЧто вы хотите сделать?" << endl;
+		cout << "1.Сформировать файл" << endl;
+		cout << "2.Открыть готовый файл" << endl;
+		cout << "3.Выход" << endl;
+		cout << endl;
+		cin >> click;
+
+		switch (click)
 		{
+		case 1:
+		{
+			to_form(person1);
+			print_to_file(person1);
+			break;
+		}
+		case 2:
+		{
+			int count = 0;
+			string row;
+			ifstream fout;
+			fout.open("Data+.txt");
+			while (!fout.eof())
+			{
+				count++;
+				getline(fout, row);
+			}
+			n = count / 4;
+			person1 = new Data[n];
+			fout.close();
+			fout.open("Data+.txt");
+			int i = 0;
+			while (!fout.eof())
+			{
+				getline(fout, row);
+				getline(fout, person1[i].full_name);
+				getline(fout, person1[i].DOB);
+				getline(fout, person1[i].address);
+				getline(fout, row);
+				i++;
+			}
+			fout.close();
+			cout << "Список загружен." << endl << endl;
+			break;
+		}
+		case 3:
 			cout << endl;
-			cout << "\tЧто вы хотите сделать?" << endl;
+			cout << "Программа завершила свою работу!";
+			cout << endl;
+			close = 1;
+			break;
+		default:
+			break;
+		}
+			cout << endl;
+			cout << "\tВыберите метод поиска: " << endl;
 			cout << "1.Линейный поиск в файле" << endl;
 			cout << "2.Прямой поиск подстроки в строке в файле" << endl;
 			cout << "3.Выход" << endl;
@@ -229,8 +281,6 @@ int main()
 			{
 			case 1:
 			{
-				to_form(person1);
-				print_to_file(person1);
 				cin.get();
 				cout << "Введите ФИО человека, данные о котором хотите найти: ";
 				getline(cin, key);
@@ -239,14 +289,13 @@ int main()
 			}
 			case 2:
 			{
-				to_form(person1);
-				print_to_file(person1);
 				cin.get();
 				cout << "Введите фамилию человека, данные о котором хотите найти: ";
 				getline(cin, key);
-				search3(person1, key);
+				search2(person1, key);
 				break;
 			}
+			
 			case 3:
 				cout << endl;
 				cout << "Программа завершила свою работу!";
