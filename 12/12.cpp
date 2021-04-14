@@ -122,48 +122,102 @@ void print_to_file(Data* person)
 	fout.close();
 }
 
-void Line_search1(Data* person, string key)
+int Line_search1(Data* person, string key)
 {
-	int res = -1;
+	int num, res = -1;
 	for (i = 0; i < n; i++)
 	{
 		if (person[i].full_name == key) res = i;
 	}
 	if (res != -1)
 	{
-		cout << "Элемент в списке найден. Он находится под номером " << res + 1;
+		return num = res + 1;
 	}
-	else cout << "Элемента в списке нет";
+	else return res;
 }
 
-void search2(Data* person, string key)
+int search2(Data* person, string key)
 {
 	string line;
-	for (int i = 1; i <= n; i++)
+	int num, str, substr, res = -1;
+	for (int t = 0; t < n; t++)
 	{
-		line = line + to_string(i) + person[i - 1].full_name;
-	}
-	int str, substr, res = -1;
+		line = person[t].full_name;
 
-	str = line.size();
-	substr = key.size();
-	if (str != 0 && substr != 0)
-	{
-		for (int i = 0; i < str - substr + 1; i++)
-		{
-			for (int j = 0; j < substr; j++)
-			{
+	  str = line.size();
+	  substr = key.size();
+	   if (str != 0 && substr != 0)
+	   {
+		  for (int i = 0; i < str - substr + 1; i++)
+		  {
+			 for (int j = 0; j < substr; j++)
+			 {
 				if (key[j] != line[i + j]) break;
 				else if (j == substr - 1)
 				{
 					res = i;
 					break;
 				}
-			}
-		}
-		if (res != -1) cout << "Элемент в списке найден. Он находится под номером " << line[res - 1];
-		else cout << "Элемента в списке нет";
+			 }
+		  }
+		  if (res != -1)
+			return num = t + 1;
+	   }
 	}
+	return res;
+}
+
+void del(Data* person, int num)
+{
+	Data* person2 = new Data[n];
+	for (int i = 0; i < num - 1; i++) {
+		person2[i] = person[i];
+
+	}
+	for (int i = num - 1; i < n - 1; i++) {
+		person2[i] = person[i + 1];
+	}
+	n--; 
+	for (int i = 0; i < n; i++)
+	{
+		person[i] = person2[i];
+	}
+	print_to_file(person);
+}
+
+void add(Data* person, int num)
+{
+	Data* person2 = new Data[n];
+	for (int i = 0; i < num; i++)
+	{
+		person2[i] = person[i];
+	}
+	cin.get();
+	getline(cin, person[num].full_name);
+	getline(cin, person[num].DOB);
+	getline(cin, person[num].address);
+
+	for (int i = num; i < n; i++)
+	{
+		person2[i+1] = person[i];
+	}
+	n++;
+	//for (int i = 0; i < n; i++)
+	//{
+	//	person[i] = person2[i];
+	//}
+	print_to_file(person2);
+}
+
+void add_del(Data* person, bool click, int num)
+{
+	cout << endl;
+	cout << "\tВыберите действие: " << endl;
+	cout << "0 - Удалить найденный эелемент в списке" << endl;
+	cout << "1 - Добавить элемент в список после найденного" << endl;
+	cin >> click;
+	if (!click)  del(person, num);
+	else add(person, num); 
 }
 
 int main()
@@ -172,6 +226,7 @@ int main()
 	SetConsoleOutputCP(1251);
 
 	int click, close = 0;
+	bool click2 = 0;
 	srand(time(NULL));
 	n = 5;
 	cout << "\tЗаписей в файле: - " << n;
@@ -208,67 +263,59 @@ int main()
 			default:
 				break;
 			}
-
 			break;
 		}
 	}
 
 	if (close == 0) {
-		do{
-		cout << endl;
-		cout << "\tЧто вы хотите сделать?" << endl;
-		cout << "1.Сформировать файл" << endl;
-		cout << "2.Открыть готовый файл" << endl;
-		cout << "3.Выход" << endl;
-		cout << endl;
-		cin >> click;
+		do {
+			cout << endl;
+			cout << "\tЧто вы хотите сделать?" << endl;
+			cout << "1.Сформировать файл" << endl;
+			cout << "2.Открыть готовый файл" << endl;
+			cout << endl;
+			cin >> click;
 
-		switch (click)
-		{
-		case 1:
-		{
-			to_form(person1);
-			print_to_file(person1);
-			break;
-		}
-		case 2:
-		{
-			int count = 0;
-			string row;
-			ifstream fout;
-			fout.open("Data+.txt");
-			while (!fout.eof())
+			switch (click)
 			{
-				count++;
-				getline(fout, row);
-			}
-			n = count / 4;
-			person1 = new Data[n];
-			fout.close();
-			fout.open("Data+.txt");
-			int i = 0;
-			while (!fout.eof())
+			case 1:
 			{
-				getline(fout, row);
-				getline(fout, person1[i].full_name);
-				getline(fout, person1[i].DOB);
-				getline(fout, person1[i].address);
-				getline(fout, row);
-				i++;
+				to_form(person1);
+				print_to_file(person1);
+				break;
 			}
-			fout.close();
-			cout << "Список загружен." << endl << endl;
-			break;
-		}
-		case 3:
-			cout << endl;
-			cout << "Программа завершила свою работу!";
-			cout << endl;
-			close = 1;
-			break;
-		default:
-			break;
-		}
+			case 2:
+			{
+				int count = 0;
+				string row;
+				ifstream fout;
+				fout.open("Data+.txt");
+				while (!fout.eof())
+				{
+					count++;
+					getline(fout, row);
+				}
+				n = count / 4;
+				person1 = new Data[n];
+				fout.close();
+				fout.open("Data+.txt");
+				int i = 0;
+				while (!fout.eof())
+				{
+					getline(fout, row);
+					getline(fout, person1[i].full_name);
+					getline(fout, person1[i].DOB);
+					getline(fout, person1[i].address);
+					getline(fout, row);
+					i++;
+				}
+				fout.close();
+				cout << "Список загружен." << endl << endl;
+				break;
+			}
+			default:
+				break;
+			}
 			cout << endl;
 			cout << "\tВыберите метод поиска: " << endl;
 			cout << "1.Линейный поиск в файле" << endl;
@@ -277,14 +324,22 @@ int main()
 			cout << endl;
 			cin >> click;
 
-			switch (click)
-			{
+			switch (click) {
 			case 1:
 			{
 				cin.get();
 				cout << "Введите ФИО человека, данные о котором хотите найти: ";
 				getline(cin, key);
-				Line_search1(person1, key);
+				int elem = Line_search1(person1, key);
+
+				if (elem != -1)
+				{
+					cout << "Элемент в списке найден. Он находится под номером " << elem << endl;
+				    add_del(person1, click2, elem);
+			    }
+				else
+					cout << "Элемента в списке нет" << endl;
+				
 				break;
 			}
 			case 2:
@@ -292,20 +347,28 @@ int main()
 				cin.get();
 				cout << "Введите фамилию человека, данные о котором хотите найти: ";
 				getline(cin, key);
-				search2(person1, key);
+				int elem = search2(person1, key);
+
+				if (elem != -1)
+				{
+					cout << "Элемент в списке найден. Он находится под номером " << elem << endl;
+					add_del(person1, click2, elem);
+				}
+				else
+					cout << "Элемента в списке нет" << endl;
 				break;
 			}
-			
 			case 3:
+			{
 				cout << endl;
 				cout << "Программа завершила свою работу!";
 				cout << endl;
 				close = 1;
 				break;
+			}
 			default:
 				break;
 			}
-
 		} while (close != 1);
 	}
 	return 0;
