@@ -373,9 +373,9 @@ int main()
 				cin.get();
 				cout << "Введите фамилию или имя человека, данные о котором хотите найти: ";
 				getline(cin, key);
-				int alt = BoyerM(person1, key);
-				if (alt != -1) 
-					cout << "Элемент найден. Номер элемента в списке: " << alt + 1 << endl;
+				int elem = BoyerM(person1, key);
+				if (elem != -1)
+					cout << "Элемент найден. Номер элемента в списке: " << elem + 1 << endl;
 				else cout << "Элемент не найден" << endl;
 				break;
 			}
@@ -384,9 +384,9 @@ int main()
 				cin.get();
 				cout << "Введите фамилию или имя человека, данные о котором хотите найти: ";
 				getline(cin, key);
-				int alt = KnMorPr(person1, key);
-				if (alt != -1)
-					cout << "Элемент найден. Номер элемента в списке: " << alt + 1 << endl;
+				int elem = KnMorPr(person1, key);
+				if (elem != -1)
+					cout << "Элемент найден. Номер элемента в списке: " << elem + 1 << endl;
 				else cout << "Элемент не найден" << endl;
 				break;
 			}
@@ -399,10 +399,10 @@ int main()
 
 				Sort(person1);
 				print_to_file(person1);
-				int element = interp_search(person1, key_num);
+				int elem = interp_search(person1, key_num);
 
-				if (element != -1)
-					cout << "Элемент найден. Номер элемента в отсортированном списке: " << element + 1 << endl;
+				if (elem != -1)
+					cout << "Элемент найден. Номер элемента в отсортированном списке: " << elem + 1 << endl;
 				else
 					cout << "Элемент с введенным номером не найден" << endl;
 				break;
