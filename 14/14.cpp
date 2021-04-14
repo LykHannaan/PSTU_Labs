@@ -126,9 +126,108 @@ void print_to_file(Data* person)
 	fout.close();
 }
 
-//int BoyerM(Data* person, string key) {}
+int BoyerM(Data* person, string key)
+{
+	string line;
+    int stl, subsl;
+	for (int t = 0; t < n; t++)
+	{
+		line = person[t].full_name;
+		stl = line.size();
+		subsl = key.size();
+		if (stl != 0 && subsl != 0 && stl >= subsl)
+		{
+			int i, p;
+			int b[256];     
+			for (i = 0; i < 256; i++)
+			{
+				b[i] = subsl;     
+			}
+			for (i = subsl - 2; i >= 0; i--)  
+			{
+				if (b[int(unsigned char(key[i]))] == subsl)    
+				{
+					b[int(unsigned char(key[i]))] = subsl - i - 1; 
+				}
+			}
+			p = subsl - 1; 
+			while (p < stl) 
+			{
+				if (key[subsl - 1] != line[p])   
+				{
+					p += b[int((unsigned char)line[p])];  
+				}
+				else    
+				{
+					for (i = subsl - 1; i >= 0; i--)  
+					{
+						if (key[i] != line[p - subsl + i + 1])  
+						{
+							p += b[int((unsigned char)line[p])];    
+							break;  
+						}
+						else if (i == 0) 
+						{
+							return t; 
+						}
+					}
+				}
+			}
+		}
+	}
+		return -1; 
+	
+}
 
-//void KnMorPr(Data* person, string key){}
+
+int KnMorPr(Data* person, string key) {
+	int  strl, subsl;
+	int res = -1, num;
+	string line;
+	for (int t = 0; t < n; t++)
+	{
+		line = person[t].full_name;
+		strl = line.size();
+		subsl = key.size();
+		if (strl == 0)
+			cout << "Неверно задана строка\n";
+		else if (subsl == 0)
+			cout << "Неверно задана подстрока\n";
+		else {
+			int  i, j = 0, k = -1;
+			int* d;
+			d = new int[1000];
+			d[0] = -1;
+			while (j < subsl - 1) {
+				while (k >= 0 && key[j] != key[k])
+					k = d[k];
+				j++;
+				k++;
+				if (key[j] == key[k])
+					d[j] = d[k];
+				else
+					d[j] = k;
+			}
+			i = 0;
+			j = 0;
+			while (j < subsl && i < strl) {
+				while (j >= 0 && line[i] != key[j])
+					j = d[j];
+				i++;
+				j++;
+			}
+			delete[] d;
+			if (j == subsl)
+			{
+				res = t;
+				break;
+			}
+			else res = -1;
+
+		}
+	}
+	return res;
+}
 
 void Sort(Data* person)
 {
@@ -168,7 +267,7 @@ int main()
 
 	int click, close = 0;
 	srand(time(NULL));
-	n = 5;
+	n = 3;
 	cout << "\tЗаписей в файле: - " << n;
 
 	Data* person1 = new Data[n];
@@ -214,7 +313,6 @@ int main()
 			cout << "\tЧто вы хотите сделать?" << endl;
 			cout << "1.Сформировать файл" << endl;
 			cout << "2.Открыть готовый файл" << endl;
-			cout << "3.Выход" << endl;
 			cout << endl;
 			cin >> click;
 
@@ -237,7 +335,7 @@ int main()
 					count++;
 					getline(fout, row);
 				}
-				n = count / 5;
+				n = count / 4;
 				person1 = new Data[n];
 				fout.close();
 				fout.open("Data+.txt");
@@ -256,12 +354,6 @@ int main()
 				cout << "Список загружен." << endl << endl;
 				break;
 			}
-			case 3:
-				cout << endl;
-				cout << "Программа завершила свою работу!";
-				cout << endl;
-				close = 1;
-				break;
 			default:
 				break;
 			}
@@ -279,24 +371,30 @@ int main()
 			case 1:
 			{
 				cin.get();
-				cout << "Введите ФИО человека, данные о котором хотите найти: ";
+				cout << "Введите фамилию или имя человека, данные о котором хотите найти: ";
 				getline(cin, key);
-				//BoyerM(person1, key);
+				int alt = BoyerM(person1, key);
+				if (alt != -1) 
+					cout << "Элемент найден. Номер элемента в списке: " << alt + 1 << endl;
+				else cout << "Элемент не найден" << endl;
 				break;
 			}
 			case 2:
 			{
 				cin.get();
-				cout << "Введите фамилию человека, данные о котором хотите найти: ";
+				cout << "Введите фамилию или имя человека, данные о котором хотите найти: ";
 				getline(cin, key);
-				//KnMorPr(person1, key);
+				int alt = KnMorPr(person1, key);
+				if (alt != -1)
+					cout << "Элемент найден. Номер элемента в списке: " << alt + 1 << endl;
+				else cout << "Элемент не найден" << endl;
 				break;
 			}
 			case 3:
 			{
 				int key_num;
 				cout << endl;
-				cout << "Введите номер телефона, который Вы ищете: ";
+				cout << "Введите номер паспорта человека, данные о котором хотите найти: ";
 				cin >> key_num;
 
 				Sort(person1);
