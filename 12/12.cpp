@@ -228,7 +228,7 @@ int main()
 	int click, close = 0;
 	bool click2 = 0;
 	srand(time(NULL));
-	n = 5;
+	n = rand() % 1000 - 500;
 	cout << "\tЗаписей в файле: - " << n;
 
 	Data* person1 = new Data[n];
