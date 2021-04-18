@@ -1,4 +1,4 @@
-#include "List.h"
+#include "list.h"
 #include <iostream>
 List::List(int s, int k)
 {
