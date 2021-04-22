@@ -16,9 +16,9 @@ public:
 	void set_first(int f) { first = f; }
 	void set_second(double s) { second = s; }
 	Pair& operator=(const Pair&);
-	Pair operator+(int z);
-	Pair operator+(double z);
 	Pair operator-(const Pair&);
+	friend Pair& operator+(Pair& t, int z);
+	friend Pair& operator+(Pair& t, double z);
 	friend istream& operator>>(istream& in, Pair& t);
 	friend ostream& operator<<(ostream& out, const Pair& t);
 };
