@@ -29,9 +29,10 @@ ostream& operator<<(ostream& out, const Vector& v)
 {
 	if (v.size == 0) out << "Empty" << endl;
 	Object** p = v.beg;
-	for (int i = 0; i < v.cur; i++;)
+	for (int i = 0; i < v.cur; i++)
 	{
 		(*p)->Show();
+		cout << endl;
 		p++;
 	}
 	return out;
