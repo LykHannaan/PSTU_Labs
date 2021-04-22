@@ -12,6 +12,7 @@ public:
 	double get_grade() { return grade; }
 	void set_subject(string);
 	void set_grade(int);
+	void for_grade();
 	Student& operator=(const Student&);
 	friend istream& operator >> (istream& in, Student& l);
 	friend ostream& operator << (ostream& out, const Student& l);
