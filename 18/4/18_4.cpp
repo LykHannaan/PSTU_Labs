@@ -12,11 +12,12 @@ Person f2()
 	Student l("Alex", 14, "Math", 4);
 	return l;
 }
-void main()
+int main()
 {
 	Person a;
 	cin >> a;
 	cout << a;
+
 	Person b("Ivan", 16);
 	cout << b;
 	a = b;
@@ -24,9 +25,10 @@ void main()
 
 	Student c;
 	cin >> c;
-	cout << c;
+	cout << c << endl;
+	c.for_grade();
+
 	f1(c);
 	a = f2();
 	cout << a;
-
 }
