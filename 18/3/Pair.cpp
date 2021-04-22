@@ -1,7 +1,6 @@
 #include "Pair.h"
 #include <iostream>
 using namespace std;
-const int z = 22;
 
 Pair& Pair::operator=(const Pair& t)
 {
@@ -11,32 +10,34 @@ Pair& Pair::operator=(const Pair& t)
 	return *this;
 }
 
-Pair Pair::operator+(double z)
+Pair& operator+(Pair& t, double z)
 {
-	second + z;
-	return *this;
+	t.second += z;
+	return t;
 }
 
-Pair Pair::operator+(int z)
+Pair& operator+(Pair& t, int z)
 {
-	first + z;
-	return *this;
+	t.first += z;
+	return t;
 }
 
 Pair Pair::operator-(const Pair& t)
 {
-	double temp1 = first - second;
-	double temp2 = t.first - t.second;
+	int temp1 = first;
+	double temp2 = second;
+	int temp3 = t.first;
+	double temp4 = t.second;
 	Pair p; 
-	p.first = temp1 - temp2;
-	p.second = temp1 - temp2;
+	p.first = temp1 - temp3;
+	p.second = (temp2 - temp4);
 	return p;
 }
 
 istream& operator>>(istream& in, Pair& t)
 {
-	cout << "first?"; in >> t.first;
-	cout << "second?"; in >> t.second;
+	cout << "first? : "; in >> t.first;
+	cout << "second? : "; in >> t.second;
 	return in;
 }
 ostream& operator<<(ostream& out, const Pair& t)
