@@ -22,7 +22,6 @@ List::~List()
 {
 	delete[]data;
 	data = 0;
-
 }
 List& List::operator=(const List& a)
 {
@@ -38,6 +37,12 @@ List& List::operator=(const List& a)
 	end = a.end;
 	return *this;
 }
+
+int List::operator() ()
+{
+	return size;
+}
+
 int& List::operator[](int index)
 {
 	if (index < size)
