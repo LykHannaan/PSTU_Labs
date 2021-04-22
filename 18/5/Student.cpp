@@ -37,6 +37,12 @@ Student& Student::operator=(const Student& l)
 	grade = l.grade;
 	return *this;
 }
+
+void Student::for_grade()
+{
+	if (grade < 3) cout << " !!! Grade is unsatisfactory";
+}
+
 istream& operator>>(istream& in, Student& l)
 {
 	cout << "\nname: "; in >> l.name;
@@ -53,6 +59,7 @@ ostream& operator<<(ostream& out, const Student& l)
 	out << "\nGRADE: " << l.grade;
 	return out;
 }
+
 void Student::Show()
 {
 	cout << "\nNAME: " << name;
