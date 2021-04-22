@@ -1,11 +1,10 @@
 #pragma once
-struct fraction
+struct progression
 {
 	double first;
 	int second;
-	int j;
-	void Init(double, int, int);    //инициализация полей
-	void Read();               //чтение значения полей
-	void Show();               //вывод значений полей
-	double element();
+	void Init(double, int);    //РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїРѕР»РµР№
+	void Read();               //С‡С‚РµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»РµР№
+	void Show();               //РІС‹РІРѕРґ Р·РЅР°С‡РµРЅРёР№ РїРѕР»РµР№
+	double element(int);
 };
