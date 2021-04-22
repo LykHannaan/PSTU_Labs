@@ -72,12 +72,12 @@ void Merge1(int* v, int r, int t)
 	}
 }
 
-void MergeSort1(int* v, int r, int i)
+void Sort1(int* v, int r, int i)
 {
 	if (i < r)
 	{
 		Merge1(v, r, i);
-		MergeSort1(v, r, i + 1);
+		Sort1(v, r, i + 1);
 	}
 }
 
@@ -107,12 +107,12 @@ void Merge2(int* A, int first, int last)
 	delete[]mas;
 }
 
-void MergeSort2(int* A, int first, int last)
+void Sort2(int* A, int first, int last)
 {
 	if (first < last)
 	{
-		MergeSort2(A, first, (first + last) / 2);
-		MergeSort2(A, (first + last) / 2 + 1, last);
+		Sort2(A, first, (first + last) / 2);
+		Sort2(A, (first + last) / 2 + 1, last);
 		Merge2(A, first, last);
 	}
 }
@@ -134,7 +134,7 @@ void sort(int* a, int k)
 	}
 }
 
-void MergeSort3(int* A)
+void Sort3(int* A)
 {
 	int a = 1, b = 1, k1 = 0, k2 = 0, k3 = 0;
 	while (a + b <= n / 2)
@@ -363,30 +363,32 @@ int main()
 	cout << "Введите количество элементов: ";
 	cin >> n;
 	srand(time(NULL));
-	int* arr = new int[n];
+	int* mas = new int[n];
 	for (int i = 0; i < n; i++)
 	{
-		arr[i] = rand() / 100;
-		cout << arr[i] << " ";
+		mas[i] = rand() / 100 - 50;
+		cout << mas[i] << " ";
 	}
-	int ar;
-	cout << endl << "Операции:" << endl;
-	cout << "1 - сортировка методом естественного слияния" << endl;
-	cout << "2 - сортировка сбалансированным слиянием" << endl;
-	cout << "3 - сортировка многофазным слиянием" << endl;
-	cout << "Введите операцию: ";
-	cin >> ar;
-	switch (ar)
+	int click;
+	cout << endl << "Выберите действие: " << endl;
+	cout << "1. Сортировка методом естественного слияния" << endl;
+	cout << "2. Сортировка сбалансированным слиянием" << endl;
+	cout << "3. Сортировка многофазным слиянием" << endl;
+	cin >> click;
+	switch (click)
 	{
-	case 1: MergeSort1(arr, n, 0); break;
-	case 2: MergeSort2(arr, 0, n - 1); break;
-	case 3: MergeSort3(arr); break;
-	default: cout << "ОШИБКА!!! Неизвестная операция. Сортировка не выполнена." << endl;
+	case 1: Sort1(mas, n, 0); 
+		break;
+	case 2: Sort2(mas, 0, n - 1);
+		break;
+	case 3: Sort3(mas); 
+		break;
+	default: break;
 	}
-	cout << endl << "После сортировки: " << endl;
+	cout << endl << "Отсортированный массив: " << endl;
 	for (int i = 0; i < n; i++)
 	{
-		cout << arr[i] << " ";
+		cout << mas[i] << " ";
 	}
 	cout << endl;
 	return 0;
