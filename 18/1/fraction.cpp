@@ -3,29 +3,26 @@
 
 using namespace std;
 
-void fraction::Init(double a0, int r, int t)
+void progression::Init(double a0, int r)
 {
 	first = a0;
 	second = r;
-	j = t;
 }
-void fraction::Read()
+void progression::Read()
 {
 	cout << "\nfirst";
 	cin >> first;
 	cout << "\nsecond";
 	cin >> second;
 	cout << "\nj";
-	cin >> j;
 }
-void fraction::Show()
+void progression::Show()
 {
 	cout << "\nfirst=" << first;
 	cout << "\nsecond=" << second;
 	cout << "\n";
-	cout << "\nj=" << j;
 }
-double fraction::element()
+double progression::element(int j)
 {
 	return (first * pow(second, j));
 }
