@@ -231,8 +231,6 @@ int main()
 	n = rand() % 1000 - 500;
 	cout << "\tЗаписей в файле: - " << n;
 
-	Data* person1 = new Data[n];
-
 	while (true)
 	{
 		if (n > 0)
@@ -267,6 +265,8 @@ int main()
 		}
 	}
 
+	Data* person1 = new Data[n];
+	
 	if (close == 0) {
 		do {
 			cout << endl;
