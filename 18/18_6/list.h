@@ -26,6 +26,10 @@ public:
 	{
 		--elem;
 	}
+	void operator+(int n)
+	{
+		elem+=n;
+	}
 	int& operator *() const { return*elem; }
 private:
 	int* elem;
@@ -46,6 +50,7 @@ public:
 	List& operator=(const List& a);
 	int& operator[](int index);
 	List operator+(const int k);
+	int operator() ();
 	friend List& operator*(List& x, List& y);
 	friend ostream& operator<<(ostream& out, const List& a);
 	friend istream& operator>>(istream& in, List& a);
