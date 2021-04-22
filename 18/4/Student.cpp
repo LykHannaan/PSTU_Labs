@@ -20,6 +20,7 @@ Student::Student(const Student&L)
 	subject = L.subject;
 	grade = L.grade;
 }
+
 void Student::set_subject(string P)
 {
 	subject = P;
@@ -36,6 +37,10 @@ Student& Student::operator=(const Student&l)
 	subject = l.subject;
 	grade = l.grade;
 	return *this;
+}
+void Student::for_grade()
+{
+	if (grade < 3) cout << " !!! Grade is unsatisfactory";
 }
 istream& operator>>(istream&in, Student&l)
 {
