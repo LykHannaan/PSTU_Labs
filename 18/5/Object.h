@@ -1,9 +1,9 @@
 #pragma once
+
 class Object
 {
 public:
-	Object(void);
-public:
-	~Object(void);
+	Object();
+	~Object();
 	virtual void Show() = 0;
 };
