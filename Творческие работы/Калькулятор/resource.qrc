@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/resources">
+        <file>img/S1.png</file>
+        <file>img/S2.png</file>
+        <file>img/амва.PNG</file>
+        <file>img/ук.PNG</file>
+        <file>img/амва1.png</file>
+        <file>img/амва2.png</file>
+        <file>img/S11.png</file>
+        <file>img/S22.png</file>
+        <file>img/S222.png</file>
+    </qresource>
+</RCC>
