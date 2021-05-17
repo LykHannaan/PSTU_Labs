@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>img/fon.jpeg</file>
+        <file>img/fon3.png</file>
+        <file>img/fon2.jpg</file>
+        <file>img/fon22.jpg</file>
+    </qresource>
+    <qresource prefix="/txt_res"/>
+</RCC>
