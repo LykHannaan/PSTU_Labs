@@ -8,20 +8,22 @@ int x;
 int len=6;
 int result[6]={1000,1000,1000,1000,1000,1000};
 bool flag[6]={false,false,false,false,false,false};
-vector <vector<int>> matrix={{0 ,0 ,13,15,0 ,0 },
-	                             {28,0 ,0 ,20,0 ,0 },
-	                             {0 ,0 ,0 ,0 ,30,0 },
-	                             {0 ,0 ,0 ,0 ,39,31},
-	                             {0 ,21,0 ,39,0 ,0 },
-                                 {18,0 ,0 ,0 ,0 ,0 }};
+vector <vector<int>> matrix=
+{{0, 10, 0, 28, 0, 0 },
+{0, 0, 14, 0, 0, 0 },
+{0, 0, 0, 18, 0, 0 },
+{0, 0, 0, 0, 20, 0},
+{0, 0, 15, 0, 0, 30 },
+{19, 0, 0, 0, 0, 0 }};
+
 bool comp(int a,int b)
 {
     return matrix[x][a]<matrix[x][b];
 }
 int main()
 {
-    SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
+    SetConsoleCP(1251); SetConsoleOutputCP(1251);
+	
     queue <int> QUEUE;
     cout << "¬ведите начальную вершину (1<=x<="<<len<<")\n";
     cin >> x;
