@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Graph</class>
+ <widget class="QDialog" name="Graph">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1232</width>
+    <height>1044</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::RightToLeft</enum>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog{background-image: url(:/res/img/fon22.jpg);}
+
+QDroupBox{background-color: rgb(232, 246, 255);}
+QMessageBox{font: 75 11pt &quot;MS Shell Dlg 2&quot;; color: rgb(150, 68, 73);}
+
+
+QPushButton {
+color: rgb(255, 255, 255);
+     border-radius: 30px;
+     background-color: rgb(81, 78, 120);
+     min-width: 80px;
+
+ } 
+ QPushButton:pressed {
+	background-color: rgb(104, 93, 145);
+ }
+
+ QPushButton:flat {
+     border: none; /* для плоской кнопки границы нет */
+ }
+QPushButton::hover {
+    background-color: rgb(115, 104, 161);
+}
+
+QLabel{color: rgb(50, 48, 74);}
+
+QTextEdit {
+background-color: rgb(232, 246, 255); 
+vertical-align: middle ;
+border-radius: 200px;
+}
+QTextEdit:hover{
+border: 1px solid rgb(115, 104, 161);
+border-radius: 200px;
+padding-left: 20px;
+padding-right: 20px;
+}
+QTextEdit:focus{
+border: 2px solid rgb(106, 209, 208);
+border-radius: 200px;
+padding-left: 20px;
+padding-right: 20px;
+}
+
+
+QLineEdit{
+border: 1px solid /*rgb(89, 145, 166);*/ rgb(197, 197, 197);
+border-radius: 40px;
+padding-left: 20px;
+padding-right: 20px;
+}
+QLineEdit:hover{
+border: 1px solid rgb(115, 104, 161);
+border-radius: 40px;
+padding-left: 20px;
+padding-right: 20px;
+}
+QLineEdit:focus{
+border: 2px solid rgb(106, 209, 208);
+border-radius: 40px;
+padding-left: 20px;
+padding-right: 20px;
+}
+</string>
+  </property>
+  <widget class="QOpenGLWidget" name="outputGraph">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>20</y>
+     <width>1111</width>
+     <height>791</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/res/img/1.jpg);</string>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>890</y>
+     <width>401</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(232, 246, 255);</string>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>381</width>
+      <height>90</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_1">
+       <property name="font">
+        <font>
+         <family>Microsoft YaHei UI</family>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="label_4">
+       <property name="font">
+        <font>
+         <family>Microsoft YaHei UI</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="font">
+        <font>
+         <family>Microsoft YaHei UI</family>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="label_3">
+       <property name="font">
+        <font>
+         <family>Microsoft YaHei UI</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>720</x>
+     <y>840</y>
+     <width>201</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>11</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Матрица смежности:</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="matrix1">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>830</y>
+     <width>201</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>GOST type B (plotter)</family>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::RightToLeft</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(232, 246, 255);</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="change_btn">
+   <property name="geometry">
+    <rect>
+     <x>800</x>
+     <y>960</y>
+     <width>121</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Изменить граф</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="result_btn">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>890</y>
+     <width>181</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Вывести результат</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>830</y>
+     <width>91</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Путь из</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>830</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>830</y>
+     <width>21</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>в</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_2">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>830</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
