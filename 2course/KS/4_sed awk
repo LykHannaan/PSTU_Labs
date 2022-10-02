@@ -1,0 +1,12 @@
+awk '
+{err[$9]++; date[$9]=$4;}
+END {
+  n=0
+  count=0
+  var_e=""
+  printf "  %-5s %-6s %-12s %s\n", "№", "ERROR", "TOTAL", "TIME";
+  for (i in err) {count=err[i]; var_e=i; n+=1; d=date[i];
+  printf " %-4s %-6s %-6s %s\n ", n, var_e, count, d"]"
+  } 
+}
+' apache_log.txt
